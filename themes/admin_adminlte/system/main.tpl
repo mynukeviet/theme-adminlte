@@ -166,8 +166,9 @@
 				<section class="content-header">
 						<!-- BEGIN: breadcrumbs -->
 						<div class="pull-left">
+                            <ul class="list-inline">
 								<!-- BEGIN: loop -->
-								<h1
+								<li
 										<!-- BEGIN: active -->
 										class="active"
 										<!-- END: active -->
@@ -178,8 +179,9 @@
 										<!-- BEGIN: linked -->
 										<a href="{BREADCRUMBS.link}">{BREADCRUMBS.title}</a>
 										<!-- END: linked -->
-								</h1>
+								</li>
 								<!-- END: loop -->
+                            </ul>
 						</div>
 						<!-- END: breadcrumbs -->
 						<ul class="pull-right list-inline btncontrol">
