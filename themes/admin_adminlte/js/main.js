@@ -4,17 +4,17 @@ var myTimersecField = '';
 function timeoutsesscancel() {
     clearInterval(myTimersecField);
     $.ajax({
-        url: nv_base_siteurl + 'index.php?second=statimg',
-        cache: false
+        url : nv_base_siteurl + 'index.php?second=statimg',
+        cache : false
     }).done(function() {
         $("#timeoutsess").hide();
         load_notification = 1;
         myTimerPage = setTimeout(function() {
             timeoutsessrun();
         }, nv_check_pass_mstime);
-        if (typeof nv_get_notification === "function") { 
+        if (typeof nv_get_notification === "function") {
             nv_get_notification();
-        }        
+        }
     });
 }
 
@@ -31,10 +31,10 @@ function timeoutsessrun() {
         if (ms >= 0) {
             document.getElementById('secField').innerHTML = ms;
         } else {
-        	clearInterval(myTimersecField);
-        	$.get(nv_base_siteurl + "index.php?second=admin_logout&js=1&nocache=" + (new Date).getTime(), function(re) {
+            clearInterval(myTimersecField);
+            $.get(nv_base_siteurl + "index.php?second=admin_logout&js=1&nocache=" + (new Date).getTime(), function(re) {
                 window.location.reload();
-			});        	
+            });
         }
     }, 1000);
 }
@@ -48,25 +48,25 @@ function modalShow(a, b) {
 }
 
 var NV = {
-    menuBusy: false,
-    menuTimer: null,
-    menu: null,
-    openMenu: function(menu) {
+    menuBusy : false,
+    menuTimer : null,
+    menu : null,
+    openMenu : function(menu) {
         this.menuBusy = true;
         this.menu = $(menu);
         this.menuTimer = setTimeout(function() {
             NV.menu.addClass('open');
         }, 300);
     },
-    closeMenu: function(menu) {
+    closeMenu : function(menu) {
         clearTimeout(this.menuTimer);
         this.menuBusy = false;
         this.menu = $(menu).removeClass('open');
     },
-    fixContentHeight: function() {
+    fixContentHeight : function() {
         var wrap = $('.nvwrap');
         var vmenu = $('#left-menu');
-
+        
         if (wrap.length > 0) {
             wrap.css('min-height', '100%');
             if (wrap.height() < vmenu.height() + vmenu.offset().top && vmenu.is(':visible')) {
@@ -82,14 +82,14 @@ $(document).ready(function() {
     $(window).resize(function() {
         NV.fixContentHeight();
     });
-
+    
     // Show submenu
     $('#menu-horizontal .dropdown, #left-menu .dropdown:not(.active)').hover(function() {
         NV.openMenu(this);
     }, function() {
         NV.closeMenu(this);
     });
-
+    
     // Left menu handle
     $('#left-menu-toggle').click(function() {
         if ($('#left-menu').is(':visible')) {
@@ -99,24 +99,28 @@ $(document).ready(function() {
         }
         NV.fixContentHeight();
     });
-
+    
     // Show admin confirm
     myTimerPage = setTimeout(function() {
         timeoutsessrun();
     }, nv_check_pass_mstime);
-
+    
     // Show confirm message on leave, reload page
     $('form.confirm-reload').change(function() {
         $(window).bind('beforeunload', function() {
             return nv_msgbeforeunload;
         });
     });
-
+    
     // Disable confirm message on submit form
     $('form').submit(function() {
         $(window).unbind();
     });
-
+    
     // Bootstrap tooltip
     $('[data-toggle="tooltip"]').tooltip();
+    
+    var head = jQuery("iframe#uploadframe").contents().find("head");
+    var css = '<style type="text/css">' + '.footer{position:fixed !important;background-color: #fff}' + '</style>';
+    $(head).append(css);
 });
