@@ -217,7 +217,9 @@
 						<div class="clearfix"></div>
 				</section>
 				<!-- Main content -->
-				<section class="content module-{MODULE_NAME}">{MODULE_CONTENT}</section>
+                <div id="contentmod">
+				    <section class="content module-{MODULE_NAME}">{MODULE_CONTENT}</section>
+                </div>
 				<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
